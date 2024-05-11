@@ -1,0 +1,18 @@
+.slidecontainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  input {
+    width: 80%
+  }
+  i{
+    transform: scale(1.6);
+    font-weight: 700;
+    font-style: normal;
+  }
+}
+.slider-setting-name {
+  margin: 0 0 -4px;
+  padding-top: 11px;
+}

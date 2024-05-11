@@ -1,0 +1,11 @@
+.text-control{
+  height: 100%;
+  width: 100%;
+  border: none;
+  resize: none;
+  background: transparent;
+}
+.text-control:focus {
+  outline: none;
+  border: none;
+}

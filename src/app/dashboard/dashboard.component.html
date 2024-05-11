@@ -1,0 +1,92 @@
+<div class="header">
+  <div class="w-name bold header-name">Sample name</div>
+</div>
+
+<div class="body-container">
+  <div class="left-section">
+    <div class="page-outline page-outline-bounds">
+      <div class="page" cdkDragBoundary=".page-outline-bounds" (drop)="drop($event)" (dragover)="allowDrop($event)">
+       <ng-container #page></ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- --------------------------------------------------------------------------------------------------- -->
+  <div class="right-section">
+    <div class="datasource-control">
+      <p>Datasource</p>
+      <div class="file-input-container">
+        <input type="text" [value]="selectedFilePath" readonly style="width: 100%;" placeholder=" Select file">
+        <label for="file-upload" class="custom-file-upload">
+          <i class="fas fa-cloud-upload-alt"></i>...
+        </label>
+        <input id="file-upload" type="file" (change)="onFileSelected($event)">
+      </div>
+      <div class="file-input-container">
+        <input type="text"   matInput style="width: 100%;" placeholder=" Enter Url/Api link">
+        <label for="file-upload" class="custom-file-upload">Fetch</label>
+        <input id="file-upload" type="text" (change)="onFileSelected($event)">
+      </div>
+    </div>
+    <div class="chart-control">
+      <p>Settings</p>
+      <div class="control-setting">
+        <app-slider [controlName]="'Font Size'"></app-slider>
+        <app-drop-down [name]="'Background color'" (selectedColorOption)="reportColorHandler($event,'bgcol')"></app-drop-down>
+        <app-drop-down [name]="'Font color'" (selectedColorOption)="reportColorHandler($event,'fontcol')"></app-drop-down>
+        <app-drop-down [name]="'Border color'"(selectedColorOption)="reportColorHandler($event,'bordercol')"></app-drop-down>
+        <div class="textarea-container">
+          <textarea  class="styled-textarea" rows="3"  placeholder="Text"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="common-control">
+     <p> Controls List</p>
+     <div class="control-list-tab-header">
+      <li (click)="controlSelected = 'common'">Common</li>
+      <li (click)="controlSelected = 'chart'">Charts</li>
+     </div>
+<ng-container *ngIf="controlSelected === 'common'">
+  <div class="list-panel">
+    <div class="list-content">
+      <li draggable="true" (dragstart)="drag($event)" id="date">
+      <svg fill="#ffffff" width="16px" height="16px" viewBox="0 0 24.00 24.00" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.00024000000000000003"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.24000000000000005"></g><g id="SVGRepo_iconCarrier"><path d="M3,22H21a1,1,0,0,0,1-1V6a1,1,0,0,0-1-1H17V3a1,1,0,0,0-2,0V5H9V3A1,1,0,0,0,7,3V5H3A1,1,0,0,0,2,6V21A1,1,0,0,0,3,22ZM4,7H20v3H4Zm0,5H20v8H4Z"></path></g></svg>
+      Date</li>
+      <li draggable="true" (dragstart)="drag($event)" id="time">
+        <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 6V12" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M16.24 16.24L12 12" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+        Time</li>
+    </div>
+    <div class="list-content">
+      <li draggable="true" (dragstart)="drag($event)" id="image"><svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M14.2639 15.9375L12.5958 14.2834C11.7909 13.4851 11.3884 13.086 10.9266 12.9401C10.5204 12.8118 10.0838 12.8165 9.68048 12.9536C9.22188 13.1095 8.82814 13.5172 8.04068 14.3326L4.04409 18.2801M14.2639 15.9375L14.6053 15.599C15.4112 14.7998 15.8141 14.4002 16.2765 14.2543C16.6831 14.126 17.12 14.1311 17.5236 14.2687C17.9824 14.4251 18.3761 14.8339 19.1634 15.6514L20 16.4934M14.2639 15.9375L18.275 19.9565M18.275 19.9565C17.9176 20 17.4543 20 16.8 20H7.2C6.07989 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4.12796 18.7313 4.07512 18.5321 4.04409 18.2801M18.275 19.9565C18.5293 19.9256 18.7301 19.8727 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V16.4934M4.04409 18.2801C4 17.9221 4 17.4575 4 16.8V7.2C4 6.0799 4 5.51984 4.21799 5.09202C4.40973 4.71569 4.71569 4.40973 5.09202 4.21799C5.51984 4 6.07989 4 7.2 4H16.8C17.9201 4 18.4802 4 18.908 4.21799C19.2843 4.40973 19.5903 4.71569 19.782 5.09202C20 5.51984 20 6.0799 20 7.2V16.4934M17 8.99989C17 10.1045 16.1046 10.9999 15 10.9999C13.8954 10.9999 13 10.1045 13 8.99989C13 7.89532 13.8954 6.99989 15 6.99989C16.1046 6.99989 17 7.89532 17 8.99989Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+        Image</li>
+      <li draggable="true" (dragstart)="drag($event)" id="text"><svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#f5f5f5"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 3V21M9 21H15M19 6V3H5V6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+        Text</li>
+    </div>
+    <div class="list-content">
+      <li draggable="true" (dragstart)="drag($event)" id="line"><svg fill="#ffffff" width="16px" height="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3.293,20.707a1,1,0,0,1,0-1.414l16-16a1,1,0,1,1,1.414,1.414l-16,16A1,1,0,0,1,3.293,20.707Z"></path></g></svg>
+        Line</li>
+      <li draggable="true" (dragstart)="drag($event)" id="pending"><svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3 9.5H21M3 14.5H21M8 4.5V19.5M6.2 19.5H17.8C18.9201 19.5 19.4802 19.5 19.908 19.282C20.2843 19.0903 20.5903 18.7843 20.782 18.408C21 17.9802 21 17.4201 21 16.3V7.7C21 6.5799 21 6.01984 20.782 5.59202C20.5903 5.21569 20.2843 4.90973 19.908 4.71799C19.4802 4.5 18.9201 4.5 17.8 4.5H6.2C5.0799 4.5 4.51984 4.5 4.09202 4.71799C3.71569 4.90973 3.40973 5.21569 3.21799 5.59202C3 6.01984 3 6.57989 3 7.7V16.3C3 17.4201 3 17.9802 3.21799 18.408C3.40973 18.7843 3.71569 19.0903 4.09202 19.282C4.51984 19.5 5.07989 19.5 6.2 19.5Z" stroke="#ffffff" stroke-width="2"></path> </g></svg>
+        Table</li>
+    </div>
+   </div>
+</ng-container>
+<ng-container *ngIf="controlSelected === 'chart'">
+  <div class="list-panel">
+    <div class="list-content">
+      <li draggable="true" (dragstart)="drag($event)" id="bar">
+        <svg fill="#ffffff" width="16px" height="16px"  viewBox="-0.5 0 32 32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M30.000,32.000 L23.000,32.000 C22.447,32.000 22.000,31.552 22.000,31.000 L22.000,1.000 C22.000,0.448 22.447,-0.000 23.000,-0.000 L30.000,-0.000 C30.553,-0.000 31.000,0.448 31.000,1.000 L31.000,31.000 C31.000,31.552 30.553,32.000 30.000,32.000 ZM29.000,2.000 L24.000,2.000 L24.000,30.000 L29.000,30.000 L29.000,2.000 ZM19.000,32.000 L12.000,32.000 C11.448,32.000 11.000,31.552 11.000,31.000 L11.000,17.000 C11.000,16.448 11.448,16.000 12.000,16.000 L19.000,16.000 C19.553,16.000 20.000,16.448 20.000,17.000 L20.000,31.000 C20.000,31.552 19.553,32.000 19.000,32.000 ZM18.000,18.000 L13.000,18.000 L13.000,30.000 L18.000,30.000 L18.000,18.000 ZM8.000,32.000 L1.000,32.000 C0.448,32.000 0.000,31.552 0.000,31.000 L0.000,11.000 C0.000,10.448 0.448,10.000 1.000,10.000 L8.000,10.000 C8.552,10.000 9.000,10.448 9.000,11.000 L9.000,31.000 C9.000,31.552 8.552,32.000 8.000,32.000 ZM7.000,12.000 L2.000,12.000 L2.000,30.000 L7.000,30.000 L7.000,12.000 Z"></path> </g></svg>
+      Bar</li>
+      <li draggable="true" (dragstart)="drag($event)" id="stack-bar"><svg width="16px" height="16px" viewBox="-2.4 -2.4 28.80 28.80" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" fill="#eeeded" stroke="#eeeded"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;stroke:#ffffff;stroke-miterlimit:10;stroke-width:1.91px;}</style></defs><polyline class="cls-1" points="23.5 22.5 1.5 22.5 1.5 0.5"></polyline><rect class="cls-1" x="6.28" y="11.98" width="4.78" height="10.52"></rect><rect class="cls-1" x="15.85" y="8.15" width="4.78" height="14.35"></rect><rect class="cls-1" x="11.07" y="3.37" width="4.78" height="19.13"></rect></g></svg>
+        Bar stack</li>
+    </div>
+    <div class="list-content">
+      <li draggable="true" (dragstart)="drag($event)" id="pie-chart"><svg width="16px" height="16px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#ffffff" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>pie-chart</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-516.000000, -151.000000)" fill="#ffffff"> <path d="M544.551,172.613 L531,168 L531,153 C538.779,152.961 545.889,159.682 545.889,167.571 C545.889,169.629 545.351,171.19 544.551,172.613 L544.551,172.613 Z M530.5,181 C523.597,181 518,175.404 518,168.5 C518,162.21 522.917,156.878 529,156 L529,169.429 L541.709,173.855 C540.018,178.128 535.163,181 530.5,181 L530.5,181 Z M531,151 L529,151 L529,154 C521.721,154.789 516,161.026 516,168.5 C516,176.508 522.492,183 530.5,183 C536.406,183 541.479,179.463 543.738,174.397 L546,175 C547.093,173.205 548,170.657 548,167.571 C548,158.419 540.005,151 531,151 L531,151 Z" id="pie-chart" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg>
+        Pie </li>
+      <li draggable="true" (dragstart)="drag($event)" id="text"><svg width="16px" height="16px" viewBox="0 -1.5 2253 2253" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect id="line_chart_dots" x="1.997" y="0" width="2250" height="2250" style="fill:none;"></rect> <g> <path d="M289.497,387.5l-100,-200l-100,200l200,-0Z" style="fill:#ffffff;"></path> <path d="M1864.5,1962.5l200,100l-200,100l0,-200Z" style="fill:#ffffff;"></path> <path d="M189.497,347.5l0,1715l1715,-0" style="fill:none;stroke:#ffffff;stroke-width:66.67px;"></path> </g> <path d="M397.831,1854.17l625,-833.334l208.333,416.667l625,-829.167" style="fill:none;stroke:#ffffff;stroke-width:66.67px;"></path> <circle cx="393.664" cy="1858.33" r="100" style="fill:#ffffff;stroke:#ffffff;stroke-width:33.33px;"></circle> <circle cx="1022.83" cy="1020.83" r="100" style="fill:#ffffff;stroke:#ffffff;stroke-width:33.33px;"></circle> <circle cx="1231.16" cy="1437.5" r="100" style="fill:#ffffff;stroke:#ffffff;stroke-width:33.33px;"></circle> <circle cx="1856.16" cy="604.167" r="100" style="fill:#ffffff;stroke:#ffffff;stroke-width:33.33px;"></circle> </g></svg>
+        Line</li>
+    </div>
+   </div>
+</ng-container>
+    </div>
+  </div>
+</div>

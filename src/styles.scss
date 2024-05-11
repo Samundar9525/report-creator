@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #232632;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.w-name{
+  color: white;
+  text-align: justify;
+}
+
+.bold{
+  font-weight: 700;
+}
+
+.setting-name{
+    margin: 0px 3px;
+    padding: 0px;
+    font-weight: 700;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

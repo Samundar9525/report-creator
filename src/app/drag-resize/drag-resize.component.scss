@@ -1,0 +1,26 @@
+.resizable-widget{
+
+}
+
+::ng-deep {
+  .ng-resizable-diagonal {
+    border-bottom: none;
+    border: none;
+  }
+  .ng-resizable-handle  {
+    border: none !important;
+  }
+}
+
+.drag-resize-container {
+  position: absolute;
+  display: flex;
+}
+
+.drag-resize-container :hover {
+  border: 1px dashed black;
+}
+
+.drag-resize-container :focus {
+  border: 1px dashed blue;
+}

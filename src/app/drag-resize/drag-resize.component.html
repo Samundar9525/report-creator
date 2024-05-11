@@ -1,0 +1,20 @@
+<div cdkDragBoundary=".page" cdkDrag class="drag-resize-container" >
+<div  ngResizable [rzContainment]="'.page'" tabindex="0"
+  [style.height.px]="50"
+  [style.width.px]="200"
+  [rzMinHeight]="50"
+  [rzMinWidth]="50"
+  [rzMaxWidth]="300"
+  [rzMaxHeight]="300"
+  (rzResizing)="onResize($event)"
+  rzHandles="all"
+  class="resizable-widget">
+  <ng-container [ngSwitch]="controlName">
+    <app-control-date  *ngSwitchCase="'date'"></app-control-date>
+    <app-control-time  *ngSwitchCase="'time'"></app-control-time>
+    <app-control-image *ngSwitchCase="'image'"></app-control-image>
+    <app-control-text  *ngSwitchCase="'text'"></app-control-text>
+    <app-control-line  *ngSwitchCase="'line'"></app-control-line>
+  </ng-container>
+</div>
+</div>

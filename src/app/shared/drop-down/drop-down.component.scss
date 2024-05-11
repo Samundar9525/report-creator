@@ -1,0 +1,43 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.color-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+.color-name{
+  display: flex;
+  align-items: center;
+}
+.dropdown-name{
+  margin: 0 0 -1px;
+  font-weight: 700;
+  padding-top: 5px;
+}
+
+::ng-deep {
+  mat-form-field{
+    height: 35px !important;
+    .mat-mdc-text-field-wrapper {
+      background-color: #BCC7DA !important;
+      width: 100%;
+    }
+    .mat-mdc-form-field-flex{
+      margin: -10px;
+    }
+    .mat-mdc-form-field-subscript-wrapper{
+      display: none;
+    }
+  }
+}
