@@ -35,7 +35,9 @@
               "node_modules/angular2-draggable/css/resizable.min.css"
 
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/plotly-2.32.0.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -100,7 +102,9 @@
               "src/styles.scss",
               "node_modules/angular2-draggable/css/resizable.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/plotly-2.32.0.min.js"
+            ]
           }
         }
       }

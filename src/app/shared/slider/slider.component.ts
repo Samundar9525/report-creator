@@ -7,15 +7,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class SliderComponent {
 
-  @Input() minValue = 0
-  @Input() maxValue = 10
-  @Input() value = 3
+  @Input() minValue = 14
+  @Input() maxValue = 40
+  @Input() value = 16
   @Input() controlName = 'Contol'
   @Output() SliderRange = new EventEmitter();
 
 
   valueChangeHandler(ev: any){
-    // console.log(ev.value)
     this.SliderRange.emit(ev.value)
   }
 

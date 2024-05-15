@@ -1,20 +1,73 @@
-<div cdkDragBoundary=".page" cdkDrag class="drag-resize-container" >
+<div #control cdkDragBoundary=".page" cdkDrag class="drag-resize-container" (click)="controlSelected(id)"
+  [style.border]= "borderColor"
+>
 <div  ngResizable [rzContainment]="'.page'" tabindex="0"
-  [style.height.px]="50"
-  [style.width.px]="200"
+  [style.height.px]="height"
+  [style.width.px]="width"
   [rzMinHeight]="50"
   [rzMinWidth]="50"
-  [rzMaxWidth]="300"
-  [rzMaxHeight]="300"
+  [rzMaxWidth]="600"
+  [rzMaxHeight]="600"
   (rzResizing)="onResize($event)"
   rzHandles="all"
   class="resizable-widget">
-  <ng-container [ngSwitch]="controlName">
-    <app-control-date  *ngSwitchCase="'date'"></app-control-date>
-    <app-control-time  *ngSwitchCase="'time'"></app-control-time>
-    <app-control-image *ngSwitchCase="'image'"></app-control-image>
-    <app-control-text  *ngSwitchCase="'text'"></app-control-text>
-    <app-control-line  *ngSwitchCase="'line'"></app-control-line>
+  <ng-container [ngSwitch]="controlName" id="id">
+    <app-control-date  *ngSwitchCase="'date'"
+      [fontSize]="fontSize"
+      [fontColor]="fontColor"
+      [backgroundColor]="backgroundColor">
+    </app-control-date>
+    <app-control-time  *ngSwitchCase="'time'"
+      [fontSize]="fontSize"
+      [fontColor]="fontColor"
+      [backgroundColor]="backgroundColor">
+    </app-control-time>
+    <app-control-image *ngSwitchCase="'image'">
+    </app-control-image>
+    <app-control-text  *ngSwitchCase="'text'"
+      [fontSize]="fontSize"
+      [text]="text"
+      [fontColor]="fontColor"
+      [backgroundColor]="backgroundColor">
+    </app-control-text>
+    <app-control-line  *ngSwitchCase="'line'"
+      [backgroundColor]="backgroundColor">
+    </app-control-line>
+    <app-bar-chart *ngSwitchCase="'bar'"
+      [id]="id"
+      [height]="height"
+      [width]="width"
+      [fontColor]="fontColor"
+      [fontSize]="fontSize"
+      [backgroundColor]="backgroundColor">
+    </app-bar-chart>
+    <app-pie-chart
+    *ngSwitchCase="'pie-chart'"
+      [id]="id"
+      [height]="height"
+      [width]="width"
+      [fontColor]="fontColor"
+      [fontSize]="fontSize"
+      [backgroundColor]="backgroundColor"
+    ></app-pie-chart>
+    <app-stacked-bar-chart
+    *ngSwitchCase="'stack-bar'"
+      [id]="id"
+      [height]="height"
+      [width]="width"
+      [fontColor]="fontColor"
+      [fontSize]="fontSize"
+      [backgroundColor]="backgroundColor"
+     ></app-stacked-bar-chart>
+    <app-line-chart
+    *ngSwitchCase="'line-chart'"
+      [id]="id"
+      [height]="height"
+      [width]="width"
+      [fontColor]="fontColor"
+      [fontSize]="fontSize"
+      [backgroundColor]="backgroundColor"
+     ></app-line-chart>
   </ng-container>
 </div>
 </div>
