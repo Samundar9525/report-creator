@@ -4,10 +4,38 @@
 
 <div class="body-container">
   <div class="left-section">
-    <div class="page-outline page-outline-bounds">
-      <div class="page" cdkDragBoundary=".page-outline-bounds" (drop)="drop($event)" (dragover)="allowDrop($event)">
-       <ng-container #page></ng-container>
+    <div class="page-orientation">
+      <div class="oreintation-1" (click)="orientation='portrait'">
+        <div class="outline-1">
+          <div class="outline-1-content">
+            <label >Portrait</label>
+          </div>
+        </div>
       </div>
+      <div class="oreintation-2" (click)="orientation='landscape'">
+        <div class="outline-2">
+          <div class="outline-2-content">
+            <label >Landscape</label>
+          </div>
+        </div>
+      </div>
+      <div class="oreintation-3" (click)="orientation='landscape-hf'">
+        <div class="outline-3">
+          <div class="outline-3-header"><label >Header</label> </div>
+          <div class="outline-3-content">
+            <label >Landscape</label>
+          </div>
+          <div class="outline-3-footer"><label >Footer</label></div>
+        </div>
+      </div>
+    </div>
+    <!-- --------------------------------------page outline------------------ -->
+    <div class="page-outline page-outline-bounds" [ngClass]="orientation">
+      <div class="landscape-header" [contentEditable]="true" *ngIf="orientation === 'landscape-hf'">Header</div>
+      <div class="page" cdkDragBoundary=".page-outline-bounds" (drop)="drop($event)" (dragover)="allowDrop($event)" [ngClass]="orientation === 'landscape-hf'?'page-hf':'page' ">
+        <ng-container #page></ng-container>
+      </div>
+      <div class="landscape-footer" [contentEditable]="true" *ngIf="orientation === 'landscape-hf'">Footer</div>
     </div>
   </div>
 

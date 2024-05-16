@@ -11,6 +11,7 @@ export class DashboardComponent implements AfterViewInit {
   controlSelected = 'common';
   selectedFilePath: string = '';
   textValue: string = 'Text';
+  orientation = 'portrait'
   @ViewChild('report')reportControl!: ReportControlComponent
   @ViewChild('page', { read: ViewContainerRef }) pageRef!: ViewContainerRef;
 
