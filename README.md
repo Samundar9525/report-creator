@@ -6,5 +6,6 @@ ScreenShots:
 
 Demo:
 Selecting Page Size:
-https://github.com/Samundar9525/report-creator/assets/71628177/f114290c-590e-480b-b903-e55bf1180c24
 
+
+![orientation (1)](https://github.com/Samundar9525/report-creator/assets/71628177/46cfb8a4-c242-4092-9c77-b59c3cc91b98)
