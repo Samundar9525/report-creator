@@ -1,27 +1,3 @@
-<div class="chat-container">
-  <div class="chat-box">
-    <div *ngFor="let msg of messages" [ngClass]="msg.sender">
-      <div class="message">{{ msg.text }}</div>
-    </div>
-  </div>
-
-  <div class="input-container">
-    <input
-      type="text"
-      [(ngModel)]="inputMessage"
-      (keydown.enter)="sendMessage()"
-      placeholder="Type your message..."
-    />
-    <button (click)="sendMessage()">Send</button>
-  </div>
-</div>
-
-
-
-
-
-
-
 .chat-container {
   width: 100%;
   max-width: 600px;
@@ -40,30 +16,40 @@
   padding: 1rem;
   overflow-y: auto;
   background: #f9f9f9;
-}
-
-.user .message {
-  background-color: #0084ff;
-  color: white;
-  align-self: flex-end;
-}
-
-.bot .message {
-  background-color: #e4e6eb;
-  color: #000;
-  align-self: flex-start;
-}
-
-.user,
-.bot {
   display: flex;
-  margin-bottom: 0.5rem;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.message-row {
+  display: flex;
+}
+
+.user {
+  justify-content: flex-end;
+}
+
+.bot {
+  justify-content: flex-start;
 }
 
 .message {
   padding: 10px 14px;
   border-radius: 18px;
   max-width: 70%;
+  word-wrap: break-word;
+}
+
+.user .message {
+  background-color: #0084ff;
+  color: white;
+  border-bottom-right-radius: 0;
+}
+
+.bot .message {
+  background-color: #e4e6eb;
+  color: #000;
+  border-bottom-left-radius: 0;
 }
 
 .input-container {
@@ -90,21 +76,3 @@ button {
   border-radius: 20px;
   cursor: pointer;
 }
-
-
-
- messages: { sender: 'user' | 'bot'; text: string }[] = [];
-  inputMessage = '';
-
-  sendMessage() {
-    if (!this.inputMessage.trim()) return;
-
-    this.messages.push({ sender: 'user', text: this.inputMessage });
-
-    // Simulate bot response
-    setTimeout(() => {
-      this.messages.push({ sender: 'bot', text: 'Bot response to: ' + this.inputMessage });
-    }, 500);
-
-    this.inputMessage = '';
-  }
